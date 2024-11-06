@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gravity Script Test</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+<style>
+/* Reset styles for body to ensure no unexpected layout behavior */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrolling if elements are moving off screen */
+    height: 100vh; /* Ensures the page takes up the full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers content horizontally and vertically */
+    background-color: #f0f0f0; /* Background color */
+}
+
+.container {
+    position: relative; /* Allows child elements to use absolute positioning */
+    z-index: 10; /* Ensures elements stay above the background */
+    width: 100%;
+    height: 100%;
+}
+
+   .element-to-apply-gravity {
+    position: absolute; /* Allows dynamic movement without affecting other elements */
+    will-change: transform; /* Improves performance during transformations */
+    transition: transform 0.1s ease-out; /* Smooth transition for gravity effect */
+}
+</style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto text-center py-20">
