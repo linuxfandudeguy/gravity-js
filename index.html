@@ -33,7 +33,6 @@
         /* Styles for the elements that will fall with gravity */
         .element-to-apply-gravity {
             position: absolute; /* Position dynamically */
-            top: 0; /* Stack all elements at the top initially */
             left: 50%; /* Center the elements horizontally */
             transform: translateX(-50%); /* Perfect centering */
             will-change: transform; /* Optimizes rendering during animation */
@@ -89,7 +88,11 @@
                 element.className = 'element-to-apply-gravity';
                 element.textContent = message;
                 document.querySelector('.container').appendChild(element);
-                
+
+                // Randomly position each message on the page
+                const randomTop = Math.random() * 100 + 'vh'; // Random position from 0 to 100% of the viewport height
+                element.style.top = randomTop;
+
                 // Introduce a small delay before the message becomes visible and falls
                 setTimeout(() => {
                     element.style.opacity = 1; // Fade the message in
