@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity.js</title>
+    <title>Gravity Effect</title>
     <script src="./gravity.js" defer></script> <!-- Entry point for gravity.js -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto font -->
     <style>
@@ -44,8 +44,8 @@
             color: white; /* Text color */
             font-weight: bold; /* Make text bold */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            transition: transform 0.5s ease-out; /* Smooth transition for gravity effect */
             opacity: 0; /* Initially set opacity to 0 */
+            transition: transform 0.5s ease-out, opacity 1s ease-out; /* Smooth transition for gravity effect */
         }
 
         /* Styling for the title */
@@ -66,41 +66,39 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Gravity.js!</h1>
-        <p>Watch the messages about <strong>gravity.js</strong> fall down and bounce when you visit the page!</p>
+        <h1 class="element-to-apply-gravity">Welcome to Gravity.js!</h1>
+        <p class="element-to-apply-gravity">Watch the messages about <strong>gravity.js</strong> fall down and bounce when you visit the page!</p>
+
+        <!-- Static HTML Elements (These will fall with gravity.js) -->
+        <div class="element-to-apply-gravity">gravity.js is a simple library for adding gravity effects to web elements.</div>
+        <div class="element-to-apply-gravity">It uses Matter.js internally for physics simulation.</div>
+        <div class="element-to-apply-gravity">With gravity.js, you can make any DOM element fall and interact with the page.</div>
+        <div class="element-to-apply-gravity">Perfect for creating fun and interactive animations on your website.</div>
+        <div class="element-to-apply-gravity">To start, simply include the library and add a class to elements you want to fall.</div>
+        <div class="element-to-apply-gravity">Try it out and see the effect immediately when the page loads!</div>
     </div>
 
     <script>
-        // Messages about gravity.js that will fall
-        const messages = [
-            "gravity.js is a simple library for adding gravity effects to web elements.",
-            "It uses Matter.js internally for physics simulation.",
-            "With gravity.js, you can make any DOM element fall and interact with the page.",
-            "Perfect for creating fun and interactive animations on your website.",
-            "To start, simply include the library and add a class to elements you want to fall.",
-            "Try it out and see the effect immediately when the page loads!"
-        ];
-
-        // Function to create and make messages fall
+        // Function to trigger gravity effect
         function triggerGravityEffect() {
-            messages.forEach(message => {
-                const element = document.createElement('div');
-                element.className = 'element-to-apply-gravity';
-                element.textContent = message;
-                document.querySelector('.container').appendChild(element);
+            // Select all elements with the class 'element-to-apply-gravity'
+            const elements = document.querySelectorAll('.element-to-apply-gravity');
 
-                // Randomly position each message on the page
-                const randomTop = Math.random() * 100 + 'vh'; // Random position from 0 to 100% of the viewport height
-                const randomLeft = Math.random() * 100 + 'vw'; // Random position from 0 to 100% of the viewport width
-                const randomRotation = (Math.random() * 30 - 15) + 'deg'; // Random rotation between -15deg and 15deg for tilt effect
+            elements.forEach(element => {
+                // Randomly position each element within the viewport
+                const randomTop = Math.random() * 100 + 'vh'; // Random top position
+                const randomLeft = Math.random() * 100 + 'vw'; // Random left position
+                const randomRotation = (Math.random() * 30 - 15) + 'deg'; // Random rotation between -15deg and 15deg
+
+                // Apply random positioning and rotation
                 element.style.top = randomTop;
                 element.style.left = randomLeft;
-                element.style.transform = `translateX(-50%) rotate(${randomRotation})`; // Apply rotation to simulate tilt
+                element.style.transform = `translateX(-50%) rotate(${randomRotation})`;
 
-                // Make each message visible immediately and fall
+                // Make the element visible and start the gravity effect
                 setTimeout(() => {
-                    element.style.opacity = 1; // Fade the message in
-                    element.style.transition = 'transform 0.5s ease-out'; // Allow gravity to take effect after fade-in
+                    element.style.opacity = 1; // Fade-in the element
+                    element.style.transition = 'transform 0.5s ease-out, opacity 1s ease-out'; // Allow gravity effect and opacity transition
                 }, 0);
             });
         }
