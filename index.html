@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity.js</title>
-    <script src="/gravity.js" defer></script>
+    <title>Gravity Effect</title>
+    <script src="./js/gravity.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Added Roboto Font -->
     <style>
         /* Basic reset for body and html */
         body, html {
@@ -13,7 +15,7 @@
             height: 100%; /* Allow full height for scrolling */
             width: 100%;
             background-color: #f4f7fc; /* Subtle light background */
-            font-family: 'Arial', sans-serif; /* Set font to Arial */
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
             display: flex;
             justify-content: center;
             align-items: center; /* Center all content */
@@ -44,28 +46,6 @@
             transition: transform 0.2s ease-out; /* Smooth transition for gravity effect */
         }
 
-        /* Button to trigger gravity effect */
-        #gravityBtn {
-            margin-top: 30px;
-            padding: 12px 25px;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-        }
-
-        #gravityBtn:hover {
-            background-color: #0056b3;
-            transform: scale(1.05); /* Slightly enlarge on hover */
-        }
-
-        #gravityBtn:focus {
-            outline: none;
-        }
-
         /* Styling for the title */
         h1 {
             font-size: 32px;
@@ -80,18 +60,37 @@
             color: #666; /* Lighter text for secondary content */
             margin-bottom: 40px;
         }
-
-        /* Scrollable container if elements fall outside */
-        .container {
-            overflow: visible;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="element-to-apply-gravity">Welcome to Gravity.js!</h1>
-        <p class="element-to-apply-gravity">Gravity.js is a tool that makes all of the elements on a page fall as if they had gravity.</p>
-        <button id="gravityBtn">Gravity</button>
+        <h1>Welcome to Gravity Test!</h1>
+        <p>Watch the messages about <strong>gravity.js</strong> fall down and bounce when you visit the page!</p>
     </div>
+
+    <script>
+        // Messages about gravity.js that will fall
+        const messages = [
+            "gravity.js is a simple library for adding gravity effects to web elements.",
+            "It uses Matter.js internally for physics simulation.",
+            "With gravity.js, you can make any DOM element fall and interact with the page.",
+            "Perfect for creating fun and interactive animations on your website.",
+            "To start, simply include the library and add a class to elements you want to fall.",
+            "Try it out and see the effect immediately when the page loads!"
+        ];
+
+        // Function to create and make messages fall
+        function triggerGravityEffect() {
+            messages.forEach(message => {
+                const element = document.createElement('div');
+                element.className = 'element-to-apply-gravity';
+                element.textContent = message;
+                document.querySelector('.container').appendChild(element);
+            });
+        }
+
+        // Automatically trigger gravity effect when the page loads
+        window.addEventListener('load', triggerGravityEffect);
+    </script>
 </body>
 </html>
