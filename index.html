@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity.js</title>
+    <title>Gravity Effect</title>
     <script src="./gravity.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Added Roboto Font -->
     <style>
@@ -34,6 +33,9 @@
         /* Styles for the elements that will fall with gravity */
         .element-to-apply-gravity {
             position: absolute; /* Position dynamically */
+            top: 0; /* Stack all elements at the top initially */
+            left: 50%; /* Center the elements horizontally */
+            transform: translateX(-50%); /* Perfect centering */
             will-change: transform; /* Optimizes rendering during animation */
             background-color: rgba(0, 123, 255, 0.6); /* Light blue background */
             border: 2px solid rgba(0, 123, 255, 1); /* Border for visibility */
@@ -44,6 +46,7 @@
             font-weight: bold; /* Make text bold */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
             transition: transform 0.2s ease-out; /* Smooth transition for gravity effect */
+            opacity: 0; /* Initially set opacity to 0 */
         }
 
         /* Styling for the title */
@@ -64,7 +67,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Gravity.js!</h1>
+        <h1>Welcome to Gravity Test!</h1>
         <p>Watch the messages about <strong>gravity.js</strong> fall down and bounce when you visit the page!</p>
     </div>
 
@@ -81,11 +84,17 @@
 
         // Function to create and make messages fall
         function triggerGravityEffect() {
-            messages.forEach(message => {
+            messages.forEach((message, index) => {
                 const element = document.createElement('div');
                 element.className = 'element-to-apply-gravity';
                 element.textContent = message;
                 document.querySelector('.container').appendChild(element);
+                
+                // Introduce a small delay before the message becomes visible and falls
+                setTimeout(() => {
+                    element.style.opacity = 1; // Fade the message in
+                    element.style.transition = 'transform 0.5s ease-out'; // Allow gravity to take effect after fade-in
+                }, index * 500); // Stagger each message's appearance by 0.5 seconds
             });
         }
 
