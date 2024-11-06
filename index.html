@@ -3,51 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity Script Test</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
-<style>
-/* Reset styles for body to ensure no unexpected layout behavior */
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevents scrolling if elements are moving off screen */
-    height: 100vh; /* Ensures the page takes up the full viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Centers content horizontally and vertically */
-    background-color: #f0f0f0; /* Background color */
-}
+    <title>Gravity.js</title>
+    <script src="/gravity.js" defer></script>
+    <style>
+        /* Basic reset for body and html */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Allow full height for scrolling */
+            width: 100%;
+            background-color: #f4f7fc; /* Subtle light background */
+            font-family: 'Arial', sans-serif; /* Set font to Arial */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center all content */
+            overflow: auto; /* Allow scrolling */
+        }
 
-.container {
-    position: relative; /* Allows child elements to use absolute positioning */
-    z-index: 10; /* Ensures elements stay above the background */
-    width: 100%;
-    height: 100%;
-}
+        /* Container to hold the falling elements */
+        .container {
+            position: relative; /* Allows elements inside to be positioned absolutely */
+            width: 90%; /* Responsive width */
+            max-width: 800px; /* Maximum width */
+            height: 100%; /* Takes up full height of the page */
+            text-align: center;
+        }
 
-   .element-to-apply-gravity {
-    position: absolute; /* Allows dynamic movement without affecting other elements */
-    will-change: transform; /* Improves performance during transformations */
-    transition: transform 0.1s ease-out; /* Smooth transition for gravity effect */
-}
-</style>
+        /* Styles for the elements that will fall with gravity */
+        .element-to-apply-gravity {
+            position: absolute; /* Position dynamically */
+            will-change: transform; /* Optimizes rendering during animation */
+            background-color: rgba(0, 123, 255, 0.6); /* Light blue background */
+            border: 2px solid rgba(0, 123, 255, 1); /* Border for visibility */
+            padding: 12px 24px; /* Adds padding for better readability */
+            font-size: 18px; /* Slightly larger text */
+            border-radius: 8px; /* Rounded corners for better aesthetics */
+            color: white; /* Text color */
+            font-weight: bold; /* Make text bold */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            transition: transform 0.2s ease-out; /* Smooth transition for gravity effect */
+        }
+
+        /* Button to trigger gravity effect */
+        #gravityBtn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        }
+
+        #gravityBtn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        #gravityBtn:focus {
+            outline: none;
+        }
+
+        /* Styling for the title */
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333; /* Darker text for better contrast */
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the description */
+        p {
+            font-size: 18px;
+            color: #666; /* Lighter text for secondary content */
+            margin-bottom: 40px;
+        }
+
+        /* Scrollable container if elements fall outside */
+        .container {
+            overflow: visible;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto text-center py-20">
-        <h1 class="text-4xl font-bold mb-4">Welcome to the Gravity Website!</h1>
-        <p class="text-lg mb-4">Click the button below to apply gravity to all page elements.</p>
-        <button id="gravityBtn" class="bg-blue-500 text-white py-2 px-4 rounded-full">Gravity</button>
+<body>
+    <div class="container">
+        <h1 class="element-to-apply-gravity">Welcome to Gravity.js!</h1>
+        <p class="element-to-apply-gravity">Gravity.js is a tool that makes all of the elements on a page fall as if they had gravity.</p>
+        <button id="gravityBtn">Gravity</button>
     </div>
-
-    <!-- Add the script tag here to load gravity.js -->
-    <script src="/gravity.js"></script>
-    
-    <script>
-        document.getElementById('gravityBtn').addEventListener('click', function() {
-            console.log('Gravity Button Clicked!');
-            // You can call any function from gravity.js here if needed
-            // gravityFunction(); // Example call if you have any functions in gravity.js
-        });
-    </script>
 </body>
 </html>
