@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity.js Effect</title>
+
+    <!-- Link to Tailwind CSS (You can also use your custom Tailwind CSS build) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        .falling-item {
+            background-color: rgba(255, 165, 0, 0.7); /* Semi-transparent orange */
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen space-y-8">
+
+    <header class="text-center">
+        <h1 class="text-4xl font-bold text-gray-800">Gravity.js Effect</h1>
+        <p class="text-xl text-gray-600 mt-4">Click the button below to apply gravity effect to all elements on the page!</p>
+    </header>
+
+    <button id="gravityBtn" class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md shadow-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition-all">
+        Activate Gravity
+    </button>
+
+    <section id="instructions" class="text-center mt-8">
+        <h2 class="text-2xl font-bold text-gray-700">Bookmarklet:</h2>
+        <p class="text-xl text-gray-600">Drag the link below to your bookmarks bar to apply the gravity effect to any page:</p>
+        <a href="javascript:(function() { var script = document.createElement('script'); script.src = 'https://your-website.com/js/gravity.js'; document.body.appendChild(script); })();" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg">
+            Gravity Bookmarklet
+        </a>
+    </section>
+
+    <!-- Content to apply gravity effect to -->
+    <main class="space-y-6 mt-12">
+        <div class="falling-item w-64 h-16 mx-auto">
+            <h2 class="text-2xl">Breaking News!</h2>
+            <p>Latest news about web development!</p>
+        </div>
+
+        <div class="falling-item w-64 h-16 mx-auto">
+            <h2 class="text-2xl">Tech Innovations</h2>
+            <p>New technologies shaping the future.</p>
+        </div>
+
+        <div class="falling-item w-64 h-16 mx-auto">
+            <h2 class="text-2xl">Sports Update</h2>
+            <p>All about the big game today.</p>
+        </div>
+    </main>
+
+    <!-- Link to dynamically load gravity.js -->
+    <script>
+        document.getElementById('gravityBtn').addEventListener('click', function() {
+            // Create and append the script element to the page dynamically
+            var script = document.createElement('script');
+            script.src = './gravity.js';
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>
