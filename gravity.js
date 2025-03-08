@@ -2,7 +2,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Dynamically create and load the Matter.js script tag
             const script = document.createElement('script');
-            script.src = './matter.min.js';
+            script.src = 'matter.min.js';
             script.onload = () => {
                 const { Engine, Render, Runner, Bodies, Composite, World, Events } = Matter;
 
