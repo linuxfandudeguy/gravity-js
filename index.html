@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Effect</title>
+    <script src="./gravity.js" defer></script> <!-- Entry point for gravity.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto font -->
+    <style>
+        /* Basic reset for body and html */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Allow full height for scrolling */
+            width: 100%;
+            background-color: #f4f7fc; /* Subtle light background */
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align items to the top */
+            overflow: auto; /* Allow scrolling */
+        }
+
+        /* Container to hold the falling elements */
+        .container {
+            position: relative; /* Allows elements inside to be positioned absolutely */
+            width: 100%; /* Full width */
+            max-width: 800px; /* Max width of content */
+            text-align: center;
+            margin-top: 50px; /* Add space above */
+        }
+
+        /* Styling for the title */
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333; /* Darker text for better contrast */
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the description */
+        p {
+            font-size: 18px;
+            color: #666; /* Lighter text for secondary content */
+            margin-bottom: 40px;
+        }
+
+        /* Styles for the elements that will fall with gravity */
+        .element-to-apply-gravity {
+            position: absolute; /* Position dynamically */
+            will-change: transform; /* Optimizes rendering during animation */
+            background-color: rgba(0, 123, 255, 0.6); /* Light blue background */
+            border: 2px solid rgba(0, 123, 255, 1); /* Border for visibility */
+            padding: 12px 24px; /* Adds padding for better readability */
+            font-size: 18px; /* Slightly larger text */
+            border-radius: 8px; /* Rounded corners for better aesthetics */
+            color: white; /* Text color */
+            font-weight: bold; /* Make text bold */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            opacity: 0; /* Initially set opacity to 0 */
+            transition: transform 0.5s ease-out, opacity 1s ease-out; /* Smooth transition for gravity effect */
+        }
+
+        /* Make sure the falling elements are visible above other content */
+        .element-to-apply-gravity {
+            z-index: 999; /* Ensure it stays above other content */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Gravity Test!</h1>
+        <p>Watch the messages about <strong>gravity.js</strong> fall down and bounce when you visit the page!</p>
+
+        <!-- Static HTML Elements (These will fall with gravity.js) -->
+        <div class="element-to-apply-gravity">gravity.js is a simple library for adding gravity effects to web elements.</div>
+        <div class="element-to-apply-gravity">It uses Matter.js internally for physics simulation.</div>
+        <div class="element-to-apply-gravity">With gravity.js, you can make any DOM element fall and interact with the page.</div>
+        <div class="element-to-apply-gravity">Perfect for creating fun and interactive animations on your website.</div>
+        <div class="element-to-apply-gravity">To start, simply include the library and add a class to elements you want to fall.</div>
+        <div class="element-to-apply-gravity">Try it out and see the effect immediately when the page loads!</div>
+    </div>
+
+    <script>
+        // Function to trigger gravity effect
+        function triggerGravityEffect() {
+            // Select all elements with the class 'element-to-apply-gravity'
+            const elements = document.querySelectorAll('.element-to-apply-gravity');
+
+            elements.forEach(element => {
+                // Randomly position each element within the viewport
+                const randomTop = Math.random() * 100 + 'vh'; // Random top position
+                const randomLeft = Math.random() * 100 + 'vw'; // Random left position
+                const randomRotation = (Math.random() * 30 - 15) + 'deg'; // Random rotation between -15deg and 15deg
+
+                // Apply random positioning and rotation
+                element.style.top = randomTop;
+                element.style.left = randomLeft;
+                element.style.transform = `translateX(-50%) rotate(${randomRotation})`;
+
+                // Make the element visible and start the gravity effect
+                setTimeout(() => {
+                    element.style.opacity = 1; // Fade-in the element
+                    element.style.transition = 'transform 0.5s ease-out, opacity 1s ease-out'; // Allow gravity effect and opacity transition
+                }, 0);
+            });
+        }
+
+        // Automatically trigger gravity effect when the page loads
+        window.addEventListener('load', triggerGravityEffect);
+    </script>
+</body>
+</html>
